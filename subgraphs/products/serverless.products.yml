@@ -1,0 +1,8 @@
+subgraph-products:
+  events:
+    - httpApi:
+        # cors: true
+        method: POST
+        path: /products
+        # private: true
+  handler: subgraphs/products/src/index.default

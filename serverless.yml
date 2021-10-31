@@ -1,0 +1,46 @@
+service: supergraph-serverless
+
+frameworkVersion: '2'
+
+package:
+  individually: true
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+provider:
+  architecture: arm64
+  # https://stackoverflow.com/questions/55542422/how-to-get-url-endpoint-detail-as-variable-in-serverless-frameworks-serverless
+  # https://forum.serverless.com/t/how-do-i-get-the-url-for-a-function-in-my-serverless-yml-file/1386/4
+  environment:
+    # APIGATEWAY_UID: !Ref 'HttpApi'
+    APIGATEWAY_URL: !Join
+      - ''
+      - - 'https://'
+        - !Ref HttpApi
+        - '.execute-api.'
+        - ${self:provider.region}
+        - '.amazonaws.com'
+  lambdaHashingVersion: 20201221
+  memorySize: 256
+  name: aws
+  region: us-east-1
+  runtime: nodejs14.x
+  stage: dev
+
+functions:
+  - ${file(./gateway/serverless.gateway.yml)}
+  - ${file(./subgraphs/inventory/serverless.inventory.yml)}
+  - ${file(./subgraphs/products/serverless.products.yml)}
+  - ${file(./subgraphs/users/serverless.users.yml)}
+
+custom:
+  # webpack:
+  # node modules configuration for packaging
+  # includeModules: true
+
+  serverless-offline:
+    allowCache: true
+    httpPort: 4000
+    useWorkerThreads: true

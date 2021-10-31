@@ -1,0 +1,23 @@
+{
+  "name": "apollo-federation-supergraph",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "serverless offline",
+    "prettier": "prettier",
+    "prettier:fix": "prettier --write .",
+    "typecheck": "tsc --noEmit"
+  },
+  "workspaces": [
+    "gateway",
+    "subgraphs/*"
+  ],
+  "devDependencies": {
+    "prettier": "2.4.1",
+    "serverless": "2.64.1",
+    "serverless-offline": "8.2.0",
+    "serverless-webpack": "5.5.5",
+    "ts-loader": "9.2.6",
+    "typescript": "4.4.4"
+  }
+}

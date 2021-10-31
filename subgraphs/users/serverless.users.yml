@@ -1,0 +1,8 @@
+subgraph-users:
+  events:
+    - httpApi:
+        # cors: true
+        method: POST
+        path: /users
+        # private: true
+  handler: subgraphs/users/src/index.default

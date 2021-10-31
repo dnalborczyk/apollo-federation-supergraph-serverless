@@ -1,0 +1,17 @@
+{
+  "name": "supergraph-gateway",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@apollo/gateway": "0.42.3",
+    "apollo-server-lambda": "3.4.0",
+    "graphql": "15.6.1",
+    "schema-gateway": "file:../../apollo-federation-supergraph-schema/schema-gateway"
+  }
+}

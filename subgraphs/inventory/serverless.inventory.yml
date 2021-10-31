@@ -1,0 +1,8 @@
+subgraph-inventory:
+  events:
+    - httpApi:
+        # cors: true
+        method: POST
+        path: /inventory
+        # private: true
+  handler: subgraphs/inventory/src/index.default
