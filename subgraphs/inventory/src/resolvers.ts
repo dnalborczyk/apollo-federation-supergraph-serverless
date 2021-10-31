@@ -1,10 +1,16 @@
 import type { Resolvers } from 'schema-inventory'
-import { delivery } from './data'
+import data from './data'
 
 const resolvers: Resolvers = {
   Product: {
     delivery(product) {
-      return delivery.find(({ id }) => id === product.id)!
+      const delivery = data.deliveries.find(({ id }) => id === product.id)
+
+      if (delivery) {
+        return delivery
+      }
+
+      throw new Error('Delivery not found.')
     },
   },
 }

@@ -1,16 +1,29 @@
 import type { Resolvers } from 'schema-users'
-import { users } from './data'
+import data from './data'
 
 const resolvers: Resolvers = {
   Query: {
     getUser(_, args) {
-      return users.find(({ email }) => email === args.email)!
+      const user = data.users.find(({ email }) => email === args.email)
+
+      if (user) {
+        return user
+      }
+
+      throw new Error('Could not find user.')
     },
   },
 
   User: {
-    __resolveReference(user) {
-      return users.find(({ email }) => email === user.email)!
+    // eslint-disable-next-line no-underscore-dangle
+    __resolveReference(_user) {
+      const user = data.users.find(({ email }) => email === _user.email)
+
+      if (user) {
+        return user
+      }
+
+      throw new Error('Could not find user.')
     },
   },
 }

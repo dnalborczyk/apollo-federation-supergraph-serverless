@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "lint": "eslint .",
     "start": "serverless offline",
     "prettier": "prettier",
     "prettier:fix": "prettier --write .",
@@ -13,6 +14,12 @@
     "subgraphs/*"
   ],
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "4.33.0",
+    "@typescript-eslint/parser": "4.33.0",
+    "eslint": "7.32.0",
+    "eslint-config-airbnb-typescript": "14.0.1",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-prettier": "4.0.0",
     "prettier": "2.4.1",
     "serverless": "2.64.1",
     "serverless-offline": "8.2.0",

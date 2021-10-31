@@ -1,14 +1,20 @@
 import type { Resolvers } from 'schema-products'
-import { products } from './data'
+import data from './data'
 
 const resolvers: Resolvers = {
   Query: {
     allProducts() {
-      return products
+      return data.products
     },
 
     product(_, args) {
-      return products.find(({ id }) => id === args.id)!
+      const product = data.products.find(({ id }) => id === args.id)
+
+      if (product) {
+        return product
+      }
+
+      throw new Error('Could not find product.')
     },
   },
 
@@ -27,30 +33,50 @@ const resolvers: Resolvers = {
       }
     },
 
-    variation(product) {
-      if (product.variation) {
+    variation(_product) {
+      if (_product.variation) {
+        return _product.variation
+      }
+
+      const product = data.products.find(({ id }) => id === _product.id)
+
+      if (product) {
         return product.variation
       }
 
-      return products.find(({ id }) => id === product.id)!.variation
+      throw new Error('Could not find product.')
     },
 
-    __resolveReference(product) {
-      if ('id' in product) {
-        return products.find(({ id }) => id === product.id)!
+    // eslint-disable-next-line no-underscore-dangle
+    __resolveReference(_product) {
+      if ('id' in _product) {
+        const product = data.products.find(({ id }) => id === _product.id)
+
+        if (product) {
+          return product
+        }
+
+        throw new Error('Could not find product.')
       }
 
-      if ('package' in product && 'sku' in product) {
-        return products.find(
-          ({ package: pkg, sku }) => pkg === product.package && sku === sku,
-        )!
+      if ('package' in _product && 'sku' in _product) {
+        const product = data.products.find(
+          ({ package: pkg, sku }) =>
+            pkg === _product.package && sku === _product.sku,
+        )
+
+        if (product) {
+          return product
+        }
+
+        throw new Error('Could not find product.')
       }
 
       return {
         id: 'rover',
         package: '@apollo/rover',
-        sku: product.sku ?? null,
-        variation: product.variation,
+        sku: _product.sku ?? null,
+        variation: _product.variation,
       }
     },
   },

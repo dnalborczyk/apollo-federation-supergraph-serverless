@@ -1,3 +1,5 @@
+'use strict'
+
 const { lib } = require('serverless-webpack')
 
 module.exports = {
