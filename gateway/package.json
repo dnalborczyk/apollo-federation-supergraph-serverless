@@ -11,7 +11,7 @@
   "dependencies": {
     "@apollo/gateway": "0.42.3",
     "apollo-server-lambda": "3.4.0",
-    "graphql": "15.6.1",
+    "graphql": "15.7.2",
     "schema-gateway": "file:../../apollo-federation-supergraph-schema/schema-gateway"
   }
 }

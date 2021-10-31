@@ -11,7 +11,7 @@
   "dependencies": {
     "@apollo/subgraph": "0.1.2",
     "apollo-server-lambda": "3.4.0",
-    "graphql": "15.6.1",
+    "graphql": "15.7.2",
     "schema-products": "file:../../../apollo-federation-supergraph-schema/schema-products"
   }
 }
