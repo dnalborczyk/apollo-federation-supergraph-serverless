@@ -1,4 +1,4 @@
-import { buildSubgraphSchema } from '@apollo/federation'
+import { buildSubgraphSchema } from '@apollo/subgraph'
 import { ApolloServer } from 'apollo-server-lambda'
 import schemaAst from 'schema-users'
 import resolvers from './resolvers'
