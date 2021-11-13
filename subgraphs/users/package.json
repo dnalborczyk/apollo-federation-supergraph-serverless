@@ -9,8 +9,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@apollo/subgraph": "0.1.2",
-    "apollo-server-lambda": "3.4.0",
+    "@apollo/subgraph": "0.1.4",
+    "apollo-server-lambda": "3.5.0",
     "graphql": "15.7.2",
     "schema-users": "file:../../../apollo-federation-supergraph-schema/schema-users"
   }
